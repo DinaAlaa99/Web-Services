@@ -9,8 +9,8 @@
 <body>
 <p><?php echo$_POST["city"] ?> Weather Status</p><br><br>
 <?php
-$api_key = "e85aa6fb1996555ba86deb74a0eb45bf";
-$url="http://api.openweathermap.org/data/2.5/weather?q=".$_POST["city"]."&APPID=".$api_key;
+require_once "config.php";
+$url="http://api.openweathermap.org/data/2.5/weather?q=".$_POST["city"]."&APPID=".api_key;
 $curl_opt = array(
     CURLOPT_URL => $url,
     CURLOPT_RETURNTRANSFER => true,
