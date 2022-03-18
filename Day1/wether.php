@@ -1,3 +1,16 @@
+<?php
+ini_set('memory_limit', '-1');
+$cities_encoded = file_get_contents("resources/city.list.json");
+$cities_decoded = json_decode($cities_encoded, 1);
+$cities_in_EG = [];
+foreach ($cities_decoded as $city) {
+    if ($city['country'] === 'EG') {
+        $cities_in_EG[] = $city;
+    }
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -9,27 +22,15 @@
 </head>
 <body>
 	<p2>Wether Forcase</p2><br><br>
-		<form action="result.php" method="post">
+		<form  method="post">
 		<select name="city" >
-			<option value="Cairo">cairo</option>
-			<option value="Alexandria">alex</option>
-			<option value="Fayoum">Fayoum</option>
-			<option value="Sohag">Sohag</option>
-            <option value="Hurghada">Hurghada</option>
-            <option value="Kafr el-Sheikh">Kafr el-Sheikh</option>
-            <option value="Arish">Arish</option>
-            <option value="Mallawi">Mallawi	</option>
-            <option value="Tanta">Tanta</option>
-            <option value="Damanhur">Damanhur	</option>
-            <option value="al-Minya">al-Minya	</option>
-            <option value="Beni Suef">Beni Suef	</option>
-            <option value="Qena">Qena</option>
-           
-
-
-
+			    <?php for ($i = 0; $i < count($cities_in_EG); $i++) {?>
+				<option name="selected" value="<?=$i ?>" data-lat="<?$lat=$cities_in_EG[$i]['coord']['lat']?>"
+                data-lon="<?$lon=$cities_in_EG[$i]['coord']['lon']?>"><?=$cities_in_EG[$i]['name']?></option>
+				<?php }?>
         </select>
-		<button type="submit" name="submit">Submit</button>
+		<button type="submit" value= "get" name="submit">Submit</button>
 	</form>
+	<?php require "result.php" ?>
 </body>
 </html>
