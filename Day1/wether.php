@@ -31,6 +31,7 @@ foreach ($cities_decoded as $city) {
         </select>
 		<button type="submit" value= "get" name="submit">Submit</button>
 	</form>
+
 	<?php require "result.php" ?>
 </body>
 </html>

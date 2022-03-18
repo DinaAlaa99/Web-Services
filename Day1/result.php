@@ -1,5 +1,3 @@
-
-<p>Weather Status</p><br><br>
 <?php
 require_once "config.php";
 
@@ -24,7 +22,12 @@ if (isset($_POST['city'])) {
         if ($response) {
 
             $decode_response = json_decode($response, true);
-            echo "The weather of " . $decode_response['name'] . " at " . date('d M Y') . " is " . ucwords($decode_response['weather'][0]['description']) . " <br>temperature is " . $decode_response['main']['temp'] . "<br>wind speed is " . $decode_response['wind']['speed'];
+            echo "<br><br>". $decode_response['name']. " Weather Status<br><br>"; 
+            echo date('l  h:i A')."<br>";
+            echo   date('d M Y')."<br>";
+            echo  ucwords($decode_response['weather'][0]['description']) . " <br>Humidity: " . $decode_response['main']['humidity'] ."%";
+            echo "<br>Wind: " . $decode_response['wind']['speed']." Km/h";
+
         } else {
             echo "<br>"."no response from the server";
         
