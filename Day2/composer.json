@@ -1,0 +1,12 @@
+{
+  "name": "simple/verysimple",
+  "description" : "simple project",
+  "license":"MIT",
+  "require":{
+     "guzzlehttp/guzzle": "^6"
+  },
+  "autoload":{
+    "classmap":["Model"],
+    "files": ["config.php","city.list.json"]
+  }
+}
